@@ -59,4 +59,7 @@ COPY --from=builder /denarius/Denarius /usr/local/bin/
 
 EXPOSE 33369 9999 9089
 
+ENV DISPLAY=:0
+ENV QT_GRAPHICSSYSTEM="native"
+
 ENTRYPOINT ["Denarius", "--datadir=/data", "--printtoconsole"]
