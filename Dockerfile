@@ -49,7 +49,14 @@ RUN apt-get update && apt-get install -y \
     libevent-dev \
     libtool \
  && rm -rf /var/lib/apt/lists/*
- COPY --from=builder /usr/local/ssl/bin/openssl /usr/local/ssl/bin/openssl
-RUN ln -sf /usr/local/ssl/bin/openssl `which openssl`
+
+RUN mkdir -p /data
+
+VOLUME ["/data"]
+
+COPY --from=builder /usr/local/ssl/bin/openssl /usr/local/ssl/bin/openssl
 COPY --from=builder /denarius/Denarius /usr/local/bin/
+
 EXPOSE 33369 9999 9089
+
+ENTRYPOINT ["Denarius", "--datadir=/data", "--printtoconsole"]
