@@ -46,6 +46,12 @@ libqrencode-dev \
 libminiupnpc-dev \
 libevent-dev \
 libtool \
+libqt5gui5 \
+libqt5core5a \
+libqt5dbus5 \
+qttools5-dev \
+qttools5-dev-tools \
+qt5-default \
 && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /usr/local/ssl/bin/openssl /usr/local/ssl/bin/openssl
 RUN ln -sf /usr/local/ssl/bin/openssl `which openssl`
